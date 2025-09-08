@@ -13,7 +13,7 @@ set -e
 
 # ----- Clean up old code -----
 echo "Cleaning up existing $SERVICE_NAME directory..."
-rm -rf "$BASE_DIR/$SERVICE_NAME"
+sudo rm -rf "$BASE_DIR/$SERVICE_NAME"
 
 # ----- Clone repo -----
 echo "Cloning repository $REPO_URL (branch: $BRANCH)..."
