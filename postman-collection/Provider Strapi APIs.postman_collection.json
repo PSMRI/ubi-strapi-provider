@@ -21,7 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test@yopmail.com\",\n    \"password\": \"test1234\"\n}",
+							"raw": "{\n    // Using environment variables with default test credentials\n    \"email\": \"{{PROVIDER_ADMIN_EMAIL}}\",\n    \"password\": \"{{PROVIDER_ADMIN_PASSWORD}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
