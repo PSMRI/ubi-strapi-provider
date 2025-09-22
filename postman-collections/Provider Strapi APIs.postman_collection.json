@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "a0d9a922-6a98-47d7-ba1e-63acb77f1c7b",
+		"name": "Provider Strapi APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7237779"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"manoj_l@techjoomla.com\",\n    \"password\": \"EFdQ8uxE3ZBCmhk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/admin/login",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Strapi Token Based APIs",
+			"item": [
+				{
+					"name": "Strapi - Benefit - Get by DocumentId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{PROVIDER_STRAPI_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/api/benefits/saryoxu2ba32a2bclk1z5mct?populate[tags]=*&populate[benefits][on][benefit.financial-benefit][populate]=*&populate[benefits][on][benefit.non-monetary-benefit][populate]=*&populate[exclusions]=*&populate[references]=*&populate[providingEntity][populate][address]=*&populate[providingEntity][populate][contactInfo]=*&populate[sponsoringEntities][populate][address]=*&populate[sponsoringEntities][populate][contactInfo]=*&populate[eligibility][populate][criteria]=*&populate[documents]=*&populate[applicationProcess]=*&populate[applicationForm][populate][fields][populate][options]=*&populate[benefitCalculationRules]=*",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"api",
+								"benefits",
+								"saryoxu2ba32a2bclk1z5mct"
+							],
+							"query": [
+								{
+									"key": "populate[tags]",
+									"value": "*"
+								},
+								{
+									"key": "populate[benefits][on][benefit.financial-benefit][populate]",
+									"value": "*"
+								},
+								{
+									"key": "populate[benefits][on][benefit.non-monetary-benefit][populate]",
+									"value": "*"
+								},
+								{
+									"key": "populate[exclusions]",
+									"value": "*"
+								},
+								{
+									"key": "populate[references]",
+									"value": "*"
+								},
+								{
+									"key": "populate[providingEntity][populate][address]",
+									"value": "*"
+								},
+								{
+									"key": "populate[providingEntity][populate][contactInfo]",
+									"value": "*"
+								},
+								{
+									"key": "populate[sponsoringEntities][populate][address]",
+									"value": "*"
+								},
+								{
+									"key": "populate[sponsoringEntities][populate][contactInfo]",
+									"value": "*"
+								},
+								{
+									"key": "populate[eligibility][populate][criteria]",
+									"value": "*"
+								},
+								{
+									"key": "populate[documents]",
+									"value": "*"
+								},
+								{
+									"key": "populate[applicationProcess]",
+									"value": "*"
+								},
+								{
+									"key": "populate[applicationForm][populate][fields][populate][options]",
+									"value": "*"
+								},
+								{
+									"key": "populate[benefitCalculationRules]",
+									"value": "*"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\n  'http://localhost:1337/api/tests/1' \\\n  -H 'accept: application/json'"
+					},
+					"response": []
+				},
+				{
+					"name": "Strapi - Benefits - List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{PROVIDER_STRAPI_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/api/benefits?populate[tags]=*&populate[benefits][on][benefit.financial-benefit][populate]=*&populate[benefits][on][benefit.non-monetary-benefit][populate]=*&populate[exclusions]=*&populate[references]=*&populate[providingEntity][populate][address]=*&populate[providingEntity][populate][contactInfo]=*&populate[sponsoringEntities][populate][address]=*&populate[sponsoringEntities][populate][contactInfo]=*&populate[eligibility][populate][criteria]=*&populate[documents]=*&populate[applicationProcess]=*&populate[applicationForm][populate][options]=*",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"api",
+								"benefits"
+							],
+							"query": [
+								{
+									"key": "populate[tags]",
+									"value": "*"
+								},
+								{
+									"key": "populate[benefits][on][benefit.financial-benefit][populate]",
+									"value": "*"
+								},
+								{
+									"key": "populate[benefits][on][benefit.non-monetary-benefit][populate]",
+									"value": "*"
+								},
+								{
+									"key": "populate[exclusions]",
+									"value": "*"
+								},
+								{
+									"key": "populate[references]",
+									"value": "*"
+								},
+								{
+									"key": "populate[providingEntity][populate][address]",
+									"value": "*"
+								},
+								{
+									"key": "populate[providingEntity][populate][contactInfo]",
+									"value": "*"
+								},
+								{
+									"key": "populate[sponsoringEntities][populate][address]",
+									"value": "*"
+								},
+								{
+									"key": "populate[sponsoringEntities][populate][contactInfo]",
+									"value": "*"
+								},
+								{
+									"key": "populate[eligibility][populate][criteria]",
+									"value": "*"
+								},
+								{
+									"key": "populate[documents]",
+									"value": "*"
+								},
+								{
+									"key": "populate[applicationProcess]",
+									"value": "*"
+								},
+								{
+									"key": "populate[applicationForm][populate][options]",
+									"value": "*"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\n  'http://localhost:1337/api/tests/1' \\\n  -H 'accept: application/json'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Token Based APis",
+			"item": [
+				{
+					"name": "Strapi - Benefit Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"title\": \"Student Education Scholarship 2025\",\n        \"category\": \"Education\",\n        \"subCategory\": \"Higher Education\",\n        \"tags\": [\n            {\n                \"name\": \"student\"\n            },\n            {\n                \"name\": \"scholarship\"\n            }\n        ],\n        \"applicationOpenDate\": \"2025-01-01\",\n        \"applicationCloseDate\": \"2025-12-31\",\n        \"imageUrl\": \"https://example.com/scholarship-image.jpg\",\n        \"shortDescription\": \"Financial assistance for higher education students from economically disadvantaged backgrounds.\",\n        \"longDescription\": \"This comprehensive scholarship program provides financial support to meritorious students from economically disadvantaged backgrounds to pursue higher education.\",\n        \"benefits\": [\n            {\n                \"__component\": \"benefit.financial-benefit\",\n                \"title\": \"Tuition Fee Coverage\",\n                \"type\": \"financial\",\n                \"description\": \"Full or partial coverage of tuition fees based on eligibility criteria\",\n                \"minValue\": \"10000\",\n                \"maxValue\": \"100000\"\n            }\n        ],\n        \"exclusions\": [\n            {\n                \"description\": \"Students with family income above Rs. 5 lakhs per annum are not eligible\"\n            }\n        ],\n        \"references\": [\n            {\n                \"title\": \"Official Guidelines\",\n                \"link\": \"https://education.gov.in/scholarship-guidelines\"\n            }\n        ],\n        \"providingEntity\": {\n            \"name\": \"Ministry of Education\",\n            \"type\": \"government\",\n            \"address\": {\n                \"street\": \"Shastri Bhawan, A Wing\",\n                \"city\": \"New Delhi\",\n                \"state\": \"Delhi\",\n                \"postalCode\": \"110001\"\n            },\n            \"department\": \"Department of Higher Education\",\n            \"contactInfo\": {\n                \"phoneNumber\": \"+91-11-23383936\",\n                \"email\": \"scholarship@education.gov.in\"\n            }\n        },\n        \"sponsoringEntities\": [\n            {\n                \"name\": \"Government of India\",\n                \"type\": \"government\",\n                \"address\": {\n                    \"street\": \"South Block, Raisina Hill\",\n                    \"city\": \"New Delhi\",\n                    \"state\": \"Delhi\",\n                    \"postalCode\": \"110001\"\n                },\n                \"department\": \"Ministry of Education\",\n                \"contactInfo\": {\n                    \"phoneNumber\": \"+91-11-23012312\",\n                    \"email\": \"info@education.gov.in\"\n                },\n                \"sponsorShare\": \"100%\"\n            }\n        ],\n        \"eligibility\": [\n            {\n                \"evidence\": \"Income Certificate\",\n                \"type\": \"economic\",\n                \"description\": \"Family income should be below Rs. 5 lakhs per annum\",\n                \"criteria\": {\n                    \"name\": \"annual_income\",\n                    \"condition\": \"less than equals\",\n                    \"conditionValues\": [\n                        500000\n                    ]\n                },\n                \"allowedProofs\": [\n                    \"income_certificate\",\n                    \"salary_slip\",\n                    \"bank_statement\"\n                ]\n            },\n            {\n                \"evidence\": \"Academic Performance\",\n                \"type\": \"academic\",\n                \"description\": \"Minimum 80% marks in previous qualifying examination\",\n                \"criteria\": {\n                    \"name\": \"percentage\",\n                    \"condition\": \"greater than equals\",\n                    \"conditionValues\": [\n                        80\n                    ]\n                },\n                \"allowedProofs\": [\n                    \"marksheet\",\n                    \"transcript\"\n                ]\n            }\n        ],\n        \"documents\": [\n            {\n                \"documentType\": \"incomeProof\",\n                \"isRequired\": true,\n                \"allowedProofs\": [\n                    \"income_certificate\",\n                    \"form_16\",\n                    \"salary_slip\"\n                ]\n            },\n            {\n                \"documentType\": \"marksProof\",\n                \"isRequired\": true,\n                \"allowedProofs\": [\n                    \"marksheet\",\n                    \"transcript\",\n                    \"certificate\"\n                ]\n            },\n            {\n                \"documentType\": \"idProof\",\n                \"isRequired\": true,\n                \"allowedProofs\": [\n                    \"aadhar_card\",\n                    \"passport\",\n                    \"voter_id\"\n                ]\n            }\n        ],\n        \"applicationProcess\": {\n            \"mode\": \"Online\",\n            \"description\": \"Applications can be submitted online through the official portal. Applicants need to register, fill the application form, upload required documents, and submit before the deadline.\"\n        },\n        \"applicationForm\": [\n            {\n                \"fieldsGroupName\": \"personal\",\n                \"fieldsGroupLabel\": \"Personal Information\",\n                \"fields\": [\n                    {\n                        \"name\": \"firstName\",\n                        \"type\": \"text\",\n                        \"label\": \"First Name\",\n                        \"required\": true\n                    },\n                    {\n                        \"name\": \"lastName\",\n                        \"type\": \"text\",\n                        \"label\": \"Last Name\",\n                        \"required\": true\n                    },\n                    {\n                        \"name\": \"dateOfBirth\",\n                        \"type\": \"date\",\n                        \"label\": \"Date of Birth\",\n                        \"required\": true\n                    },\n                    {\n                        \"name\": \"gender\",\n                        \"type\": \"select\",\n                        \"label\": \"Gender\",\n                        \"required\": true,\n                        \"options\": [\n                            {\n                                \"label\": \"Male\",\n                                \"value\": \"male\"\n                            },\n                            {\n                                \"label\": \"Female\",\n                                \"value\": \"female\"\n                            },\n                            {\n                                \"label\": \"Other\",\n                                \"value\": \"other\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"fieldsGroupName\": \"academic\",\n                \"fieldsGroupLabel\": \"Academic Information\",\n                \"fields\": [\n                    {\n                        \"name\": \"instituteName\",\n                        \"type\": \"text\",\n                        \"label\": \"Name of Educational Institute\",\n                        \"required\": true\n                    },\n                    {\n                        \"name\": \"course\",\n                        \"type\": \"text\",\n                        \"label\": \"Course/Program\",\n                        \"required\": true\n                    }\n                ]\n            }\n        ]\n    }\n}"
+						},
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/api/benefits",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"api",
+								"benefits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Providers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/admin/roles",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"admin",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Provider",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Testing Provider\",\n    \"description\": \"Testing Provider\"\n}"
+						},
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/admin/roles",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"admin",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Provider User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Test\",\n    \"lastname\": \"User\",\n    \"email\": \"test_user1@yopmail.com\",\n    \"roles\": [\n        \"4\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/admin/users",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Fields",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/admin/permissions?role=",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"admin",
+								"permissions"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Permissions to Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"permissions\": [\n        {\n            \"action\": \"plugin::content-manager.explorer.create\",\n            \"subject\": \"api::benefit.benefit\",\n            \"conditions\": [],\n            \"properties\": {\n                \"fields\": [\n                    \"title\",\n                    \"category\",\n                    \"subCategory\",\n                    \"tags.name\",\n                    \"applicationOpenDate\",\n                    \"applicationCloseDate\",\n                    \"imageUrl\",\n                    \"shortDescription\",\n                    \"shortDescription_md\",\n                    \"longDescription\",\n                    \"longDescription_md\",\n                    \"benefits\",\n                    \"exclusions.description\",\n                    \"exclusions.description_md\",\n                    \"references.title\",\n                    \"references.link\",\n                    \"providingEntity.name\",\n                    \"providingEntity.type\",\n                    \"providingEntity.address.street\",\n                    \"providingEntity.address.city\",\n                    \"providingEntity.address.state\",\n                    \"providingEntity.address.postalCode\",\n                    \"providingEntity.department\",\n                    \"providingEntity.contactInfo.phoneNumber\",\n                    \"providingEntity.contactInfo.email\",\n                    \"sponsoringEntities.name\",\n                    \"sponsoringEntities.type\",\n                    \"sponsoringEntities.address.street\",\n                    \"sponsoringEntities.address.city\",\n                    \"sponsoringEntities.address.state\",\n                    \"sponsoringEntities.address.postalCode\",\n                    \"sponsoringEntities.department\",\n                    \"sponsoringEntities.contactInfo.phoneNumber\",\n                    \"sponsoringEntities.contactInfo.email\",\n                    \"sponsoringEntities.sponsorShare\",\n                    \"eligibility.evidence\",\n                    \"eligibility.type\",\n                    \"eligibility.description\",\n                    \"eligibility.criteria.name\",\n                    \"eligibility.criteria.condition\",\n                    \"eligibility.criteria.conditionValues\",\n                    \"eligibility.allowedProofs\",\n                    \"documents.documentType\",\n                    \"documents.isRequired\",\n                    \"documents.allowedProofs\",\n                    \"applicationProcess.mode\",\n                    \"applicationProcess.description\",\n                    \"applicationForm.fieldsGroupName\",\n                    \"applicationForm.fieldsGroupLabel\",\n                    \"name\",\n                    \"type\",\n                    \"label\",\n                    \"required\",\n                    \"options.label\",\n                    \"options.value\",\n                    \"multiple\",\n                    \"benefitCalculationRules.ruleId\",\n                    \"benefitCalculationRules.description\",\n                    \"benefitCalculationRules.type\",\n                    \"benefitCalculationRules.outputField\",\n                    \"benefitCalculationRules.inputFields\",\n                    \"benefitCalculationRules.fixedValue\",\n                    \"benefitCalculationRules.lookupTable\",\n                    \"benefitCalculationRules.conditions\",\n                    \"benefitCalculationRules.formula\"\n                ],\n                \"locales\": [\n                    \"en\"\n                ]\n            }\n        },\n        {\n            \"action\": \"plugin::content-manager.explorer.read\",\n            \"subject\": \"api::benefit.benefit\",\n            \"conditions\": [\n                \"admin::has-same-role-as-creator\",\n                \"admin::is-creator\"\n            ],\n            \"properties\": {\n                \"fields\": [\n                    \"title\",\n                    \"category\",\n                    \"subCategory\",\n                    \"tags.name\",\n                    \"applicationOpenDate\",\n                    \"applicationCloseDate\",\n                    \"imageUrl\",\n                    \"shortDescription\",\n                    \"shortDescription_md\",\n                    \"longDescription\",\n                    \"longDescription_md\",\n                    \"benefits\",\n                    \"exclusions.description\",\n                    \"exclusions.description_md\",\n                    \"references.title\",\n                    \"references.link\",\n                    \"providingEntity.name\",\n                    \"providingEntity.type\",\n                    \"providingEntity.address.street\",\n                    \"providingEntity.address.city\",\n                    \"providingEntity.address.state\",\n                    \"providingEntity.address.postalCode\",\n                    \"providingEntity.department\",\n                    \"providingEntity.contactInfo.phoneNumber\",\n                    \"providingEntity.contactInfo.email\",\n                    \"sponsoringEntities.name\",\n                    \"sponsoringEntities.type\",\n                    \"sponsoringEntities.address.street\",\n                    \"sponsoringEntities.address.city\",\n                    \"sponsoringEntities.address.state\",\n                    \"sponsoringEntities.address.postalCode\",\n                    \"sponsoringEntities.department\",\n                    \"sponsoringEntities.contactInfo.phoneNumber\",\n                    \"sponsoringEntities.contactInfo.email\",\n                    \"sponsoringEntities.sponsorShare\",\n                    \"eligibility.evidence\",\n                    \"eligibility.type\",\n                    \"eligibility.description\",\n                    \"eligibility.criteria.name\",\n                    \"eligibility.criteria.condition\",\n                    \"eligibility.criteria.conditionValues\",\n                    \"eligibility.allowedProofs\",\n                    \"documents.documentType\",\n                    \"documents.isRequired\",\n                    \"documents.allowedProofs\",\n                    \"applicationProcess.mode\",\n                    \"applicationProcess.description\",\n                    \"applicationForm.fieldsGroupName\",\n                    \"applicationForm.fieldsGroupLabel\",\n                    \"name\",\n                    \"type\",\n                    \"label\",\n                    \"required\",\n                    \"options.label\",\n                    \"options.value\",\n                    \"multiple\",\n                    \"benefitCalculationRules.ruleId\",\n                    \"benefitCalculationRules.description\",\n                    \"benefitCalculationRules.type\",\n                    \"benefitCalculationRules.outputField\",\n                    \"benefitCalculationRules.inputFields\",\n                    \"benefitCalculationRules.fixedValue\",\n                    \"benefitCalculationRules.lookupTable\",\n                    \"benefitCalculationRules.conditions\",\n                    \"benefitCalculationRules.formula\"\n                ],\n                \"locales\": [\n                    \"en\"\n                ]\n            }\n        },\n        {\n            \"action\": \"plugin::content-manager.explorer.update\",\n            \"subject\": \"api::benefit.benefit\",\n            \"conditions\": [],\n            \"properties\": {\n                \"fields\": [\n                    \"title\",\n                    \"category\",\n                    \"subCategory\",\n                    \"tags.name\",\n                    \"applicationOpenDate\",\n                    \"applicationCloseDate\",\n                    \"imageUrl\",\n                    \"shortDescription\",\n                    \"shortDescription_md\",\n                    \"longDescription\",\n                    \"longDescription_md\",\n                    \"benefits\",\n                    \"exclusions.description\",\n                    \"exclusions.description_md\",\n                    \"references.title\",\n                    \"references.link\",\n                    \"providingEntity.name\",\n                    \"providingEntity.type\",\n                    \"providingEntity.address.street\",\n                    \"providingEntity.address.city\",\n                    \"providingEntity.address.state\",\n                    \"providingEntity.address.postalCode\",\n                    \"providingEntity.department\",\n                    \"providingEntity.contactInfo.phoneNumber\",\n                    \"providingEntity.contactInfo.email\",\n                    \"sponsoringEntities.name\",\n                    \"sponsoringEntities.type\",\n                    \"sponsoringEntities.address.street\",\n                    \"sponsoringEntities.address.city\",\n                    \"sponsoringEntities.address.state\",\n                    \"sponsoringEntities.address.postalCode\",\n                    \"sponsoringEntities.department\",\n                    \"sponsoringEntities.contactInfo.phoneNumber\",\n                    \"sponsoringEntities.contactInfo.email\",\n                    \"sponsoringEntities.sponsorShare\",\n                    \"eligibility.evidence\",\n                    \"eligibility.type\",\n                    \"eligibility.description\",\n                    \"eligibility.criteria.name\",\n                    \"eligibility.criteria.condition\",\n                    \"eligibility.criteria.conditionValues\",\n                    \"eligibility.allowedProofs\",\n                    \"documents.documentType\",\n                    \"documents.isRequired\",\n                    \"documents.allowedProofs\",\n                    \"applicationProcess.mode\",\n                    \"applicationProcess.description\",\n                    \"applicationForm.fieldsGroupName\",\n                    \"applicationForm.fieldsGroupLabel\",\n                    \"name\",\n                    \"type\",\n                    \"label\",\n                    \"required\",\n                    \"options.label\",\n                    \"options.value\",\n                    \"multiple\",\n                    \"benefitCalculationRules.ruleId\",\n                    \"benefitCalculationRules.description\",\n                    \"benefitCalculationRules.type\",\n                    \"benefitCalculationRules.outputField\",\n                    \"benefitCalculationRules.inputFields\",\n                    \"benefitCalculationRules.fixedValue\",\n                    \"benefitCalculationRules.lookupTable\",\n                    \"benefitCalculationRules.conditions\",\n                    \"benefitCalculationRules.formula\"\n                ],\n                \"locales\": [\n                    \"en\"\n                ]\n            }\n        },\n        {\n            \"action\": \"plugin::content-manager.explorer.publish\",\n            \"subject\": \"api::benefit.benefit\",\n            \"conditions\": [],\n            \"properties\": {\n                \"locales\": [\n                    \"en\"\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/admin/roles/20/permissions",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"admin",
+								"roles",
+								"20",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Content Manager",
+			"item": [
+				{
+					"name": "Benefit List - Paginated",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/content-manager/collection-types/api::benefit.benefit?page=1&pageSize=100&sort=createdAt:desc&locale=en",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"content-manager",
+								"collection-types",
+								"api::benefit.benefit"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "100"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt:desc"
+								},
+								{
+									"key": "locale",
+									"value": "en"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Benefit By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{PROVIDER_ADMIN_USER_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{PROVIDER_STRAPI_API_URL}}/content-manager/collection-types/api::benefit.benefit/saryoxu2ba32a2bclk1z5mct",
+							"host": [
+								"{{PROVIDER_STRAPI_API_URL}}"
+							],
+							"path": [
+								"content-manager",
+								"collection-types",
+								"api::benefit.benefit",
+								"saryoxu2ba32a2bclk1z5mct"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "{{BENEFICIARY_API_URL_DePWD}}",
+			"type": "default"
+		}
+	]
+}
