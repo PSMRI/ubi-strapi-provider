@@ -1,0 +1,56 @@
+name: Deploy to UBA-PILOT
+
+on:
+  workflow_dispatch:
+    inputs:
+      TAG:
+        description: 'Docker image tag to deploy'
+        required: true
+        default: 'v0.0.0'
+      BRANCH:
+        description: 'Git branch to deploy'
+        required: true
+        default: 'main'
+  push:
+    tags:
+      - '*'  # Trigger on tag push
+
+jobs:
+  deploy_strapi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: UBA-DEPWD-PILOT
+
+    steps:
+      - name: Deploy Strapi Catalog Manager
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_PILOT }}
+          username: ${{ secrets.SSH_USERNAME_PILOT }}
+          key: ${{ secrets.SSH_KEY_PILOT }}
+          port: ${{ secrets.SSH_PORT_PILOT }}
+          script: |
+            # ----- Export variables -----
+            export BASE_DIR="${{ secrets.TARGET_DIR_PILOT }}"
+            export TAG="${{ github.event.inputs.TAG || github.ref_name || 'latest' }}"
+            export BRANCH="${{ github.event.inputs.BRANCH || 'main' }}"
+            export SERVICE_NAME="strapi"
+            export REPO_URL="https://github.com/PSMRI/ubi-strapi-provider"
+
+            # ----- Change to base dir -----
+            cd "$BASE_DIR" || exit 1
+
+            # ----- Prepare .env -----
+            if [ -f .env ]; then rm .env; fi
+            echo "${{ secrets.ENV_PILOT }}" > .env
+
+            # ----- Run deploy script -----
+            bash deploy.sh
+
+      - name: Notify on Slack
+        uses: iRoachie/slack-github-actions@v2.3.2
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+        if: ${{ always() }}
