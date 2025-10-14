@@ -1,6 +1,6 @@
 services:
-  strapi:
-    container_name: strapi
+  ubi-strapi-provider:
+    container_name: ubi-strapi-provider
     build: .
     image: strapi:latest
     restart: unless-stopped
