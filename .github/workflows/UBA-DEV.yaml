@@ -22,7 +22,7 @@ jobs:
           script: |
             # ----- Variables -----
             export BASE_DIR="${{ secrets.SSH_TARGET_DIR }}"
-            export SERVICE_NAME="strapi"
+            export SERVICE_NAME="ubi-strapi-provider"
             export REPO_URL="https://github.com/PSMRI/ubi-strapi-provider"
             export TAG="latest"
 
