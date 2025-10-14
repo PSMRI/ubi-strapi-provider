@@ -1,5 +1,4 @@
 name: Deploy Strapi Catalog Manager to UBA-DEV
-
 on:
   push:
     branches:
