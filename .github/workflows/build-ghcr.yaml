@@ -25,14 +25,14 @@ jobs:
           IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/ubi-strapi-provider
           TAG: ${{ github.event.inputs.tag }}
         run: |
+          # Convert IMAGE_NAME to lowercase
+          IMAGE_NAME=$(echo "$IMAGE_NAME" | tr '[:upper:]' '[:lower:]')
           echo "Building and tagging image as $IMAGE_NAME:$TAG"
           docker build -t $IMAGE_NAME:$TAG .
           docker tag $IMAGE_NAME:$TAG $IMAGE_NAME:latest
-
           echo "Pushing image: $IMAGE_NAME:$TAG"
           docker push $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:latest
-
           echo "$IMAGE_NAME:$TAG" > image.txt
 
       - name: Upload image URI
