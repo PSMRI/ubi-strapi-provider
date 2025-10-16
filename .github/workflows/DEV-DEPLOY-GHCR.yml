@@ -35,7 +35,7 @@ jobs:
 
             IMAGE_URI="${{ env.IMAGE_URI }}"
             CONTAINER_NAME="ubi-strapi-provider"
-            BASE_DIR="${{ secrets.TARGET_DIR }}"
+            BASE_DIR="${{ secrets.SSH_TARGET_DIR }}"
             ENV_FILE="${BASE_DIR}/.env"
 
             echo "🔐 Logging in to GHCR..."
