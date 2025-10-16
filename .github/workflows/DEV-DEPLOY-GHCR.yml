@@ -48,6 +48,7 @@ jobs:
             docker-compose stop ubi-strapi-provider || true
             docker-compose rm -f ubi-strapi-provider || true
 
+            cd "$BASE_DIR"
             # Update image in docker-compose.yml dynamically
             sed -i "s|image:.*|image: $IMAGE_URI|" docker-compose.yml
 
