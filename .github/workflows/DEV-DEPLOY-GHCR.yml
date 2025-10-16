@@ -1,4 +1,4 @@
-name: Deploy to UBA-DEV (Docker Compose)
+name: Deploy to UBA-DEV (Docker Compose + Port Check)
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
       tag:
         description: 'Docker tag to deploy (e.g., v1.0.4)'
         required: true
-        default: 'latest'
+        default: 'v1.0.0'
 
 jobs:
   deploy_on_uba_dev:
@@ -21,7 +21,7 @@ jobs:
           echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
           echo "📦 Deploying image: $IMAGE_URI"
 
-      # Step 2: SSH into server and update Compose service
+      # Step 2: SSH into server and deploy
       - name: Deploy via Docker Compose
         uses: appleboy/ssh-action@v0.1.9
         with:
@@ -35,28 +35,36 @@ jobs:
 
             BASE_DIR="${{ secrets.TARGET_DIR }}"
             IMAGE_URI="${{ env.IMAGE_URI }}"
-
+            CONTAINER_NAME="ubi-strapi-provider"
             cd "$BASE_DIR"
 
+            # Login to GHCR
             echo "🔐 Logging in to GHCR..."
             echo "${{ secrets.GHCR_PAT_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
+            # Pull the latest image
             echo "📦 Pulling new image..."
             docker pull "$IMAGE_URI"
 
-            echo "🛑 Updating Docker Compose service..."
-            docker-compose stop ubi-strapi-provider || true
-            docker-compose rm -f ubi-strapi-provider || true
+            # Check if any container is using port 80 and stop/remove it
+            echo "🛑 Checking for any container using port 80..."
+            RUNNING_ON_80=$(docker ps --filter "publish=80" --format "{{.ID}}")
+            if [ -n "$RUNNING_ON_80" ]; then
+              echo "⚠️ Port 80 in use by container(s): $RUNNING_ON_80 — stopping..."
+              docker stop $RUNNING_ON_80 || true
+              docker rm -f $RUNNING_ON_80 || true
+            fi
 
-            cd "$BASE_DIR"
-            # Update image in docker-compose.yml dynamically
+            # Update docker-compose.yml to use the new image
+            echo "📝 Updating docker-compose.yml with new image..."
             sed -i "s|image:.*|image: $IMAGE_URI|" docker-compose.yml
 
+            # Deploy via Docker Compose
             echo "🚀 Starting service via Docker Compose..."
             docker-compose up -d
 
             echo "✅ Deployment complete!"
-            docker ps | grep ubi-strapi-provider
+            docker ps | grep "$CONTAINER_NAME"
 
       # Step 3: Slack notification
       - name: Notify on Slack
