@@ -6,22 +6,17 @@ on:
       tag:
         description: 'Docker tag to deploy (e.g., v1.0.4)'
         required: true
-        default: 'v1.0.0'
+        default: 'latest'
 
 jobs:
   deploy_on_uba_dev:
     runs-on: ubuntu-latest
     environment: UBA-DEV
-    steps:
-      - name: Download image URI artifact from build
-        uses: actions/download-artifact@v4
-        with:
-          name: image-uri
-          path: .
 
+    steps:
       - name: Set IMAGE_URI environment variable
         run: |
-          IMAGE_URI=$(cat image.txt)
+          IMAGE_URI="ghcr.io/psmri/ubi-strapi-provider:${{ github.event.inputs.tag }}"
           echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
           echo "📦 Deploying image: $IMAGE_URI"
 
@@ -38,7 +33,6 @@ jobs:
 
             IMAGE_URI="${{ env.IMAGE_URI }}"
             CONTAINER_NAME="ubi-strapi-provider"
-            BASE_DIR="${{ secrets.TARGET_DIR }}"
             ENV_FILE="${{ secrets.ENV_FILE }}"
 
             echo "🔐 Logging in to GHCR..."
