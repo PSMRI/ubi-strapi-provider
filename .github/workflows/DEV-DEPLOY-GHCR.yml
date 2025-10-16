@@ -14,27 +14,29 @@ jobs:
     environment: UBA-DEV
 
     steps:
-      - name: Set IMAGE_URI environment variable
+      - name: Set IMAGE_URI from GHCR
         run: |
-          IMAGE_URI="ghcr.io/psmri/ubi-strapi-provider:${{ github.event.inputs.tag }}"
-          echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
-          echo "📦 Deploying image: $IMAGE_URI"
+          IMAGE_NAME=$(echo "ghcr.io/${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          TAG="${{ github.event.inputs.tag }}"
+          echo "IMAGE_URI=$IMAGE_NAME:$TAG" >> $GITHUB_ENV
+          echo "📦 Deploying image: $IMAGE_NAME:$TAG"
 
       - name: Deploy to UBA-DEV server
         uses: appleboy/ssh-action@v0.1.9
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: ${{ secrets.PORT }}
           script: |
+            bash -s <<'EOF'
             set -e
             echo "🚀 Starting deployment to UBA-DEV environment"
 
             IMAGE_URI="${{ env.IMAGE_URI }}"
             CONTAINER_NAME="ubi-strapi-provider"
             BASE_DIR="${{ secrets.TARGET_DIR }}"
-            ENV_FILE="${BASE_DIR}/.env""
+            ENV_FILE="${{ secrets.ENV_FILE }}"
 
             echo "🔐 Logging in to GHCR..."
             echo "${{ secrets.GHCR_PAT_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -54,6 +56,7 @@ jobs:
 
             echo "✅ Deployment complete!"
             docker ps | grep "$CONTAINER_NAME"
+            EOF
 
       - name: Notify on Slack
         uses: iRoachie/slack-github-actions@v2.3.2
