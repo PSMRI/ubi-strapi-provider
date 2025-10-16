@@ -33,7 +33,8 @@ jobs:
 
             IMAGE_URI="${{ env.IMAGE_URI }}"
             CONTAINER_NAME="ubi-strapi-provider"
-            ENV_FILE="${{ secrets.ENV_FILE }}"
+            BASE_DIR="${{ secrets.TARGET_DIR }}"
+            ENV_FILE="${BASE_DIR}/.env""
 
             echo "🔐 Logging in to GHCR..."
             echo "${{ secrets.GHCR_PAT_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
