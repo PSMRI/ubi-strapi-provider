@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - '*'  # Trigger on any branch push
-
 jobs:
   deploy_strapi:
     runs-on: ubuntu-latest
