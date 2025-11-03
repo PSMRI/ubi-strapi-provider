@@ -2,7 +2,7 @@ name: Deploy Strapi Catalog Manager to UBA-DEV
 on:
   push:
     branches:
-      - '*'  # Trigger on any branch push
+      - 'main'  # Trigger on any branch push
 jobs:
   deploy_strapi:
     runs-on: ubuntu-latest
